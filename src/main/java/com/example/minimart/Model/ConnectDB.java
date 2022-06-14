@@ -68,7 +68,7 @@ public class ConnectDB {
         }
     }
     public void updatePro(Product product){
-        String sql= "UPDATE products SET image ="+product.image+", id_type="+product.id_type+",proName="+product.proName+",price="+product.price+",des="+product.des+" WHERE id="+product.id;
+        String sql = "UPDATE products SET image = '"+product.image+"', id_type = '"+product.id_type+"', proName = '"+ product.proName +"',  price = '"+product.price+"', des = '"+product.des+"' WHERE id = "+ product.id;
         System.out.println(sql);
         try {
             connection.prepareStatement(sql).executeUpdate();

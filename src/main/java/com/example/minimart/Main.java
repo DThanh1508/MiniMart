@@ -102,19 +102,19 @@ public class Main extends Application {
             btnUpdate.setOnAction(e -> {
                 btnAdd.setVisible(false);
                 int id1 = Integer.parseInt(btnUpdate.getId());
-                TextField tfimage = (TextField) grid.getChildren().get(1);
+                TextField tfimage = (TextField) grid.getChildren().get(2);
                 tfimage.setText("" + productList.get(id1).getImage());
 
-                TextField tfid_type = (TextField) grid.getChildren().get(3);
+                TextField tfid_type = (TextField) grid.getChildren().get(5);
                 tfid_type.setText("" + productList.get(id1).getId_type());
 
-                TextField tfname = (TextField) grid.getChildren().get(5);
+                TextField tfname = (TextField) grid.getChildren().get(8);
                 tfname.setText("" + productList.get(id1).getProName());
 
-                TextField tfprice = (TextField) grid.getChildren().get(7);
+                TextField tfprice = (TextField) grid.getChildren().get(11);
                 tfprice.setText("" + productList.get(id1).getPrice());
 
-                TextField tfdes = (TextField) grid.getChildren().get(9);
+                TextField tfdes = (TextField) grid.getChildren().get(14);
                 tfdes.setText("" + productList.get(id1).getDes());
                 var newbtnAdd = new Button("Update");
                 newbtnAdd.setPadding(new Insets(5, 15, 5, 15));
@@ -132,7 +132,7 @@ public class Main extends Application {
                         throw new RuntimeException(ex);
                     }
                 });
-                grid.add(newbtnAdd, 5, 1);
+                grid.add(newbtnAdd, 1, 7);
             });
             grid.add(btnUpdate, 8, i+2);
 
