@@ -23,7 +23,7 @@ public class ConnectDB {
         }
 
     }
-    public List<Admin> getAdmin(){
+    public ArrayList<Admin> getAdmin(){
         ArrayList<Admin> admins = new ArrayList<>();
         try {
             var result = connection.prepareStatement("Select * from admin").executeQuery();

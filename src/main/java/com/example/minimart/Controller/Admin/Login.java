@@ -13,11 +13,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Login {
     private void checkLogin(ConnectDB db,TextField name, TextField pass,Stage window,Scene scene3){
-        List<Admin> admin = new ArrayList<>();
+        ArrayList<Admin> admin;
         admin = db.getAdmin();
         String inputName = name.getText();
         String inputPass = pass.getText();
@@ -31,7 +30,7 @@ public class Login {
     private void LoginSuccess(TextField name) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Login");
-        alert.setHeaderText("Hi "+name.getText());
+        alert.setHeaderText("Hi "+name.getText()+" admin!");
         alert.setContentText("Login successfully!");
         alert.show();
     }
@@ -43,16 +42,16 @@ public class Login {
     }
     public VBox pageLogin(Stage window, Scene scene1,ConnectDB db,Scene scene3){
         Label labelLogin =new Label("LOGIN");
-        Label Aname = new Label("Name: ");
-        Label Apassword = new Label("Password: ");
-        TextField name = new TextField();
-        TextField pass = new TextField();
+        Label lbname = new Label("Admin name: ");
+        Label lbpass = new Label("Password: ");
+        TextField tfname = new TextField();
+        TextField tfpass = new TextField();
         HBox fieldName = new HBox();
-        fieldName.getChildren().addAll(Aname,name);
+        fieldName.getChildren().addAll(lbname,tfname);
         fieldName.setSpacing(10);
         fieldName.setAlignment(Pos.BASELINE_CENTER);
         HBox fieldPass = new HBox();
-        fieldPass.getChildren().addAll(Apassword,pass);
+        fieldPass.getChildren().addAll(lbpass,tfpass);
         fieldPass.setSpacing(10);
         fieldPass.setAlignment(Pos.BASELINE_CENTER);
         Button btnGoBack = new Button("GO HOME");
@@ -61,7 +60,7 @@ public class Login {
         });
         Button btnLogin = new Button("LOGIN");
         btnLogin.setOnAction(actionEvent -> {
-            checkLogin(db,name,pass,window,scene3);
+            checkLogin(db,tfname,tfpass,window,scene3);
         });
         HBox btnLoginPage = new HBox();
         btnLoginPage.getChildren().addAll(btnLogin,btnGoBack);

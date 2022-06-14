@@ -1,1 +1,1 @@
-# Minimart
+# MiniMart
