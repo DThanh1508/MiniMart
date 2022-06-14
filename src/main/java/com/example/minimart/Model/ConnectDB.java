@@ -59,7 +59,7 @@ public class ConnectDB {
         return product;
     }
     public void insertPro(Product product){
-        String sql = "INSERT INTO products(image,id_type,proName,price,des) VALUES(" +product.image+"," +product.id_type+ ","+product.proName+","+product.price+","+product.des+")";
+        String sql = "INSERT INTO products (image,id_type,proName,price,des) VALUE ('"+product.image+"','"+product.id_type+"','"+product.proName+"','"+product.price+"','"+product.des+"')";
         System.out.println(sql);
         try {
             connection.prepareStatement(sql).executeUpdate();

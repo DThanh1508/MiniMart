@@ -32,25 +32,30 @@ public class Main extends Application {
         ConnectDB DB = new ConnectDB();
         ArrayList<Product> productList = DB.getProduct();
 
-        grid.add(new Label("Image:"), 0, 0);
+        grid.add(new Label("Image"), 3, 0);
+        grid.add(new Label("Image:"), 0, 2);
         var tfImage = new TextField();
-        grid.add(tfImage, 0, 1);
+        grid.add(tfImage, 1, 2);
         //
-        grid.add(new Label("Type:"),1,0);
+        grid.add(new Label("Type"),4,0);
+        grid.add(new Label("Type:"),0,3);
         var tfIdType = new TextField();
-        grid.add(tfIdType,1,1);
+        grid.add(tfIdType,1,3);
         //
-        grid.add(new Label("Product name:"), 2, 0);
+        grid.add(new Label("Product name"), 5, 0);
+        grid.add(new Label("Product name:"), 0, 4);
         var tfName = new TextField();
-        grid.add(tfName, 2, 1);
+        grid.add(tfName, 1, 4);
         //
-        grid.add(new Label("Price:"), 3, 0);
+        grid.add(new Label("Price"), 6, 0);
+        grid.add(new Label("Price:"), 0, 5);
         var tfPrice = new TextField();
-        grid.add(tfPrice, 3, 1);
+        grid.add(tfPrice, 1, 5);
         //
-        grid.add(new Label("Description:"),4,  0);
+        grid.add(new Label("Description"),7,  0);
+        grid.add(new Label("Description:"),0,  6);
         var tfDes = new TextField();
-        grid.add(tfDes, 4, 1);
+        grid.add(tfDes, 1, 6);
         //
 
         // add51
@@ -63,13 +68,18 @@ public class Main extends Application {
             String price = tfPrice.getText();
             String des = tfDes.getText();
             DB.insertPro(new Product( image, id_type, name, price, des));
+            System.out.println(image);
+            System.out.println(id_type);
+            System.out.println(name);
+            System.out.println(price);
+            System.out.println(des);
             try {
                 start(stage);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
         });
-        grid.add(btnAdd, 5, 1);
+        grid.add(btnAdd, 1, 7);
 
         //show
         for(int i = 0; i < productList.size(); i++){
@@ -79,12 +89,12 @@ public class Main extends Application {
             imageView.setImage(image);
             imageView.setFitWidth(90);
             imageView.setFitHeight(90);
-            grid.add(imageView, 0, i+2);
+            grid.add(imageView, 3, i+2);
 
-            grid.add(new Label(String.valueOf(productList.get(i).getId_type())),1,i+2);
-            grid.add(new Label (productList.get(i).getProName()), 2, i+2);
-            grid.add(new Label ("$"+ productList.get(i).getPrice()), 3, i+2);
-            grid.add(new Label (productList.get(i).getDes()), 4, i+2);
+            grid.add(new Label(String.valueOf(productList.get(i).getId_type())),4,i+2);
+            grid.add(new Label (productList.get(i).getProName()), 5, i+2);
+            grid.add(new Label ("$"+ productList.get(i).getPrice()), 6, i+2);
+            grid.add(new Label (productList.get(i).getDes()), 7, i+2);
 
             // Update
             var btnUpdate = new Button("Update");
@@ -124,7 +134,7 @@ public class Main extends Application {
                 });
                 grid.add(newbtnAdd, 5, 1);
             });
-            grid.add(btnUpdate, 5, i+2);
+            grid.add(btnUpdate, 8, i+2);
 
             // Delete
             var btnDelete = new Button("Delete");
@@ -142,10 +152,10 @@ public class Main extends Application {
                     throw new RuntimeException(ex);
                 }
             });
-            grid.add(btnDelete, 6, i+2);
+            grid.add(btnDelete, 9, i+2);
         }
 
-        Scene scene = new Scene(grid, 1500, 1000);
+        Scene scene = new Scene(grid, 1500, 700);
         stage.setTitle("Products");
         stage.setScene(scene);
         stage.show();
