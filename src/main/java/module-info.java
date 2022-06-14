@@ -5,6 +5,7 @@ module com.example.minimart {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires java.desktop;
 
     opens com.example.minimart to javafx.fxml;
     exports com.example.minimart;
