@@ -5,10 +5,10 @@ public class Product {
     public String image;
     public int id_type;
     public String proName;
-    public String price;
+    public int price;
     public String des;
 
-    public Product (int id, String image, int id_type, String proName, String price, String des) {
+    public Product (int id, String image, int id_type, String proName, int price, String des) {
         this.id = id;
         this.image = image;
         this.id_type = id_type;
@@ -17,7 +17,7 @@ public class Product {
         this.des = des;
     }
 
-    public Product (String image, int id_type, String proName, String price, String des) {
+    public Product (String image, int id_type, String proName, int price, String des) {
         this.image = image;
         this.id_type = id_type;
         this.proName = proName;
@@ -50,11 +50,11 @@ public class Product {
         this.proName = proName;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

@@ -49,7 +49,7 @@ public class ConnectDB {
                 String image = result.getString("image");
                 int id_type = result.getInt("id_type");
                 String proName = result.getString("proName");
-                String price = String.valueOf(result.getFloat("price"));
+                int price = result.getInt("price");
                 String des = result.getString("des");
                 product.add(new Product(id, image, id_type,proName,price,des));
             }

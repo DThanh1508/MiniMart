@@ -1,5 +1,7 @@
 package com.example.minimart;
 
+import com.example.minimart.Controller.Admin.AddPro;
+import com.example.minimart.Controller.Admin.ShowPro;
 import com.example.minimart.Model.ConnectDB;
 import com.example.minimart.Model.Product;
 import javafx.application.Application;
@@ -58,102 +60,28 @@ public class Main extends Application {
         grid.add(tfDes, 1, 6);
         //
 
-        // add51
+
+        // add
         var btnAdd = new Button("Add");
+        ShowPro showPro = new ShowPro(stage);
+        showPro.showPro(productList,grid,btnAdd,DB);
         btnAdd.setPadding(new Insets(5, 15, 5, 15));
         btnAdd.setOnAction(e -> {
             String image = tfImage.getText();
             Integer id_type = Integer.valueOf(tfIdType.getText());
             String name = tfName.getText();
-            String price = tfPrice.getText();
-            String des = tfDes.getText();
-            DB.insertPro(new Product( image, id_type, name, price, des));
-            System.out.println(image);
-            System.out.println(id_type);
-            System.out.println(name);
-            System.out.println(price);
-            System.out.println(des);
+            Integer price = 0;
             try {
-                start(stage);
+                price = Integer.parseInt(tfPrice.getText());
             } catch (Exception ex) {
-                throw new RuntimeException(ex);
+
             }
+            String des = tfDes.getText();
+
+            var addPro = new AddPro(stage);
+            addPro.addProFunction(image,id_type,name,price,des,DB);
         });
         grid.add(btnAdd, 1, 7);
-
-        //show
-        for(int i = 0; i < productList.size(); i++){
-
-            Image image = new Image(productList.get(i).getImage());
-            ImageView imageView = new ImageView();
-            imageView.setImage(image);
-            imageView.setFitWidth(90);
-            imageView.setFitHeight(90);
-            grid.add(imageView, 3, i+2);
-
-            grid.add(new Label(String.valueOf(productList.get(i).getId_type())),4,i+2);
-            grid.add(new Label (productList.get(i).getProName()), 5, i+2);
-            grid.add(new Label ("$"+ productList.get(i).getPrice()), 6, i+2);
-            grid.add(new Label (productList.get(i).getDes()), 7, i+2);
-
-            // Update
-            var btnUpdate = new Button("Update");
-            btnUpdate.setId(String.valueOf(i));
-            btnUpdate.setOnAction(e -> {
-                btnAdd.setVisible(false);
-                int id1 = Integer.parseInt(btnUpdate.getId());
-                TextField tfimage = (TextField) grid.getChildren().get(2);
-                tfimage.setText("" + productList.get(id1).getImage());
-
-                TextField tfid_type = (TextField) grid.getChildren().get(5);
-                tfid_type.setText("" + productList.get(id1).getId_type());
-
-                TextField tfname = (TextField) grid.getChildren().get(8);
-                tfname.setText("" + productList.get(id1).getProName());
-
-                TextField tfprice = (TextField) grid.getChildren().get(11);
-                tfprice.setText("" + productList.get(id1).getPrice());
-
-                TextField tfdes = (TextField) grid.getChildren().get(14);
-                tfdes.setText("" + productList.get(id1).getDes());
-                var newbtnAdd = new Button("Update");
-                newbtnAdd.setPadding(new Insets(5, 15, 5, 15));
-                newbtnAdd.setOnAction(newe -> {
-                    int Newid = productList.get(id1).id;
-                    String Newimage = tfimage.getText();
-                    int Newid_type = Integer.parseInt(tfid_type.getText());
-                    String Newname = tfname.getText();
-                    String Newprice = tfprice.getText();
-                    String Newdes = tfdes.getText();
-                    DB.updatePro(new Product( Newid, Newimage, Newid_type, Newname, Newprice, Newdes));
-                    try {
-                        start(stage);
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-                });
-                grid.add(newbtnAdd, 1, 7);
-            });
-            grid.add(btnUpdate, 8, i+2);
-
-            // Delete
-            var btnDelete = new Button("Delete");
-            btnDelete.setId(String.valueOf(productList.get(i).id));
-            btnDelete.setOnAction(e -> {
-                int id3 = Integer.parseInt(btnDelete.getId());
-                DB.deletePro(id3);
-                var alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setContentText("Deleted!");
-                alert.showAndWait();
-                try {
-                    start(stage);
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-            grid.add(btnDelete, 9, i+2);
-        }
 
         Scene scene = new Scene(grid, 1500, 700);
         stage.setTitle("Products");
