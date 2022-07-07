@@ -63,6 +63,7 @@ public class Main extends Application {
 
         // add
         var btnAdd = new Button("Add");
+        btnAdd.setStyle("-fx-background-color:  green; -fx-text-fill: white; -fx-padding: 5 15; -fx-font: normal bold 12px 'Arial'");
         ShowPro showPro = new ShowPro(stage);
         showPro.showPro(productList,grid,btnAdd,DB);
         btnAdd.setPadding(new Insets(5, 15, 5, 15));

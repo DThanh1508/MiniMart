@@ -39,6 +39,7 @@ public class ShowPro {
 
             // Update
             var btnUpdate = new Button("Update");
+            btnUpdate.setStyle("-fx-background-color:  blue; -fx-text-fill: white; -fx-padding: 5 15; -fx-font: normal bold 12px 'Arial'");
             btnUpdate.setId(String.valueOf(i));
             btnUpdate.setOnAction(e -> {
                 btnAdd.setVisible(false);
@@ -57,7 +58,8 @@ public class ShowPro {
 
                 TextField tfdes = (TextField) grid.getChildren().get(14);
                 tfdes.setText("" + productList.get(id1).getDes());
-                var newbtnAdd = new Button("Update ne");
+                var newbtnAdd = new Button("Update");
+                newbtnAdd.setStyle("-fx-background-color:  blue; -fx-text-fill: white; -fx-padding: 5 15; -fx-font: normal bold 12px 'Arial'");
                 newbtnAdd.setPadding(new Insets(5, 15, 5, 15));
                 newbtnAdd.setOnAction(newe -> {
                   var updatePro = new UpdatePro(stage);
@@ -72,6 +74,7 @@ public class ShowPro {
             // Delete
             var btnDelete = new Button("Delete");
             btnDelete.setId(String.valueOf(productList.get(i).id));
+            btnDelete.setStyle("-fx-background-color:  #b00000; -fx-text-fill: white; -fx-padding: 5 15; -fx-font: normal bold 12px 'Arial'");
             btnDelete.setOnAction(e -> {
                 int id3 = Integer.parseInt(btnDelete.getId());
                 var delete = new DeletePro(stage);
